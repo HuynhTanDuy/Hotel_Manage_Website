@@ -17,4 +17,17 @@ It is a web application with gorgeous interface and fully basic function. .
 ## Interface & Function
 
 <p align="center"><img src="image/1.png"></p>
+<p align="center"><img src="image/2.png"></p>
+<p align="center"><img src="image/3.png"></p>
+<p align="center"><img src="image/4.png"></p>
+<p align="center"><img src="image/5.png"></p>
+<p align="center"><img src="image/6.png"></p>
+<p align="center"><img src="image/7.png"></p>
+
+## Conclusion
+I’m very appriciate about your care. Hope you will enjoy and satify about my website. If you have any question, feel free to leave a message at tanduyht@gmail.com.
+ 
+
+
+
 
