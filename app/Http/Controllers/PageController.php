@@ -43,9 +43,7 @@ class PageController extends Controller
     // }
     public function Home()
     {
-
-    	
-    	$food_category=CategoryFood::all();
+        $food_category=CategoryFood::all();
     	$review=Review::all();
     	return view('pages.Home',['food_category'=>$food_category,'review'=>$review]);
     }
