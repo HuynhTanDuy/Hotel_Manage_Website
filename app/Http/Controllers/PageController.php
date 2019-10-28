@@ -15,6 +15,7 @@ use App\Reservation;
 use App\Room;
 use App\User;
 use App\DetailBill;
+use App\Food;
 class PageController extends Controller
 {
     //
@@ -45,6 +46,9 @@ class PageController extends Controller
     {
         $food_category=CategoryFood::all();
     	$review=Review::all();
+        // $food=new Food();
+        // $food_data=$food->GetById(3);
+        // var_dump($food_data);return;
     	return view('pages.Home',['food_category'=>$food_category,'review'=>$review]);
     }
     public function About()
@@ -111,6 +115,7 @@ class PageController extends Controller
             $bill->content='Tiền phòng';
             $bill->price= $cate->price*$day;
             $bill->idReservation=$reservation->id;
+            $bill->created_at=$request->dateout;
             $bill->save();  
             return redirect('reservation/{1}')->with('annoucement','Đặt chỗ thành công.Phòng của bạn là '.$roomtaken[0]->name .'  .See you soon !');
         }

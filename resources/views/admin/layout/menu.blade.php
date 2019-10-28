@@ -89,6 +89,11 @@
                                     <a href="admin/reservation/add">Add</a>
                                 </li>
                             </ul>
+                        </li>
+                        <li>
+                            <a href="admin/report"><i class="fa fa-bar-chart-o fa-fw"></i> Report<span class="fa arrow"></span></a>
+                        </li>
+                            
                             <!-- /.nav-second-level -->
                        
                         

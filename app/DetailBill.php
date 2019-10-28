@@ -8,6 +8,6 @@ class DetailBill extends Model
 {
     //
     protected $table="details_bill";
-    public $timestamps = false;
+    public $timestamps = true;
     
 }

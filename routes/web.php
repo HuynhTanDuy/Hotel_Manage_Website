@@ -17,7 +17,7 @@ Route::get('event','PageController@Event');
 Route::get('rooms','PageController@Rooms');
 Route::get('reservation/{idCate}','PageController@Reservation');
 Route::post('postReservation','PageController@postReservation');
-
+Route::get('exportBill','UserController@ExportBill');
 
 //route cho login
 Route::get('admin/login','UserController@getDangNhapAdmin');

@@ -45,5 +45,12 @@ class UserController extends Controller
         Auth::logout();
         return redirect('admin/login');
     }
+
+    public function ExportBill()
+    {
+        $data=['name'=>'Huynh Tan Duy'];
+        $pdf = PDF::loadview('pages.export_bill',compact('data'));
+        return $pdf->download('export_bill.pdf');
+    }
 }
 
