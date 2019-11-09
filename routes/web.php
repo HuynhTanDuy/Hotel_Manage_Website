@@ -18,6 +18,8 @@ Route::get('rooms','PageController@Rooms');
 Route::get('reservation/{idCate}','PageController@Reservation');
 Route::post('postReservation','PageController@postReservation');
 Route::get('exportBill','UserController@ExportBill');
+Route::get('/admin/report','UserController@Report');
+Route::get('/admin/monthReport','UserController@monthReport');
 
 //route cho login
 Route::get('admin/login','UserController@getDangNhapAdmin');
