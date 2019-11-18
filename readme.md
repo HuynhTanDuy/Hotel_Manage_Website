@@ -10,9 +10,9 @@
 ## About Paradise Resort’s Website
 
 It is a web application with gorgeous interface and fully basic function. . 
-- Author: Huynh Tan Duy).
-- Language: Html,css,javascript for Fron-end and PHP-Laravel Framework for Back-end.
-- Funtion: Introduce information, event, Restaurand’s menu; Booking; Manage,Payment)
+- Author: Huynh Tan Duy.
+- Language: Html,css,javascript for Front-end and PHP-Laravel Framework for Back-end.
+- Funtion: Introduce information, Event, Restaurand’s menu; Booking; Manage,Payment.
 
 ## Interface & Function
 
@@ -25,7 +25,7 @@ It is a web application with gorgeous interface and fully basic function. .
 <p align="center"><img src="image/7.png"></p>
 
 ## Conclusion
-I’m very appriciate about your care. Hope you will enjoy and satify about my website. If you have any question, feel free to leave a message at tanduyht@gmail.com.
+I’m very appreciate about your caring. Hope you will enjoy and satify about my website. If you have any question, feel free to leave a message at tanduyht@gmail.com.
  
 
 
