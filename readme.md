@@ -26,6 +26,9 @@ It is a web application with gorgeous interface and fully basic function. .
 
 ## Conclusion
 I’m very appreciate about your caring. Hope you will enjoy and satify about my website. If you have any question, feel free to leave a message at tanduyht@gmail.com.
+
+## Update  
+I updated sql file in database/hotelmanage.sql if you need to create database.
  
 
 
