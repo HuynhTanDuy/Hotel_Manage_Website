@@ -16,23 +16,54 @@ use App\Room;
 use App\User;
 use App\DetailBill;
 use App\Food;
+use App\Repositories\CategoryFood\CategoryFoodInterface;
+use App\Builder\PageBuilder;
 class PageController extends Controller
 {
-    //
-    function __construct()
+    
+    function __construct(
+        CategoryFoodInterface $category_food
+        // Information $information, 
+        // About $about,
+        // Description $description,
+        // Slide $slide,
+        // Event $event,
+        // CategoryRoom $category
+    ) {   
+        $this->category_food=$category_food;
+
+        $builder = new PageBuilder($this);
+        $this->builder=$builder->setInfor()
+                               ->setAbout()  
+                               ->setDescription()
+                               ->setSlide()
+                               ->setEvent()
+                               ->setCategory(); 
+        $this->shareView();                       
+
+    	//$this->infor=$information->find(0);
+    	// $this->about=$about->find(1);
+    	// $this->description=$description->find(1);
+    	// $this->slide=$slide->all();
+    	// $this->event=$event->all();
+    	// $this->category=$event->all();
+                               
+    	// view()->share('infor', $this->infor);
+    	// view()->share('about', $this->about);
+    	// view()->share('description', $this->description);
+    	// view()->share('slide', $this->slide);
+    	// view()->share('event', $this->event);
+    	// view()->share('category', $this->category);
+    }
+
+    public function shareView()
     {
-    	$infor=Information::find(0);
-    	$about=About::find(1);
-    	$description=Description::find(1);
-    	$slide=Slide::all();
-    	$event=Event::all();
-    	$category=CategoryRoom::all();
-    	view()->share('infor',$infor);
-    	view()->share('about',$about);
-    	view()->share('description',$description);
-    	view()->share('slide',$slide);
-    	view()->share('event',$event);
-    	view()->share('category',$category);
+        view()->share('infor', $this->builder->getInfor());
+        view()->share('about', $this->builder->getAbout());
+        view()->share('description', $this->builder->getDescription());
+        view()->share('slide', $this->builder->getSlide());
+        view()->share('event', $this->builder->getEvent());
+        view()->share('category', $this->builder->getCategory());
     }
     // public function adduser()
     // {
@@ -45,6 +76,8 @@ class PageController extends Controller
     public function Home()
     {
         $food_category=CategoryFood::all();
+        $food_category=$this->category_food->GetAll();
+        //return $this->builder->getInfor();
     	$review=Review::all();
         // $food=new Food();
         // $food_data=$food->GetById(3);
