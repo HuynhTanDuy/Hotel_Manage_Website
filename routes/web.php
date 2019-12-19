@@ -10,7 +10,7 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
+Route::get('/','PageController@Home');
 Route::get('home','PageController@Home' );
 Route::get('about','PageController@About');
 Route::get('event','PageController@Event');
@@ -25,7 +25,7 @@ Route::get('/admin/monthReport','UserController@monthReport');
 Route::get('admin/login','UserController@getDangNhapAdmin');
 Route::post('admin/dangnhappost','UserController@postDangNhapAdmin');
 Route::get('admin/logout','UserController@getDangXuatAdmin');
-
+Route::get('admin','UserController@getDangNhapAdmin');
 //tạo route cho trang admin
 Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 
@@ -142,6 +142,11 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 	});	//Route for delete
 
 
+});
+
+Route::group(['prefix'=>'api'],function(){
+	Route::get('room-type','ApiController@getRoomType');
+	Route::post('hipost','ApiController@testPost');
 });	
 
 
