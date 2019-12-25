@@ -32,11 +32,11 @@
                             @foreach ($slide as $sl)
                                 <tr class="odd gradeX" align="center">
                                     <td>{{$sl->id}}</td>
-                                    <td>{{$sl->link}}</td>
+                                    <td> <img style="max-width: 200px;max-height: 200px;" src="{{$sl->link}}"> </td>
                                     <td>{{$sl->caption}}</td>
                                    
                                     <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/slide/edit/{{$sl->id}}">Edit</a></td>
-                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/slide/delete/{{$sl->id}}"> Delete</a></td>
+                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/slide/delete/{{$sl->id}}" onclick="return confirm('Bạn có chắc muốn xóa ?');"> Delete</a></td>
                                     
                                 </tr>
                             @endforeach

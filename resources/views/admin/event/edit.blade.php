@@ -27,7 +27,7 @@
                         </div>
                         @endif
 
-                        <form action="admin/event/editPost/{{$event->id}}" method="POST">
+                        <form action="admin/event/editPost/{{$event->id}}" method="POST" enctype="multipart/form-data">
                              @csrf
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            
@@ -41,7 +41,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Hình ảnh</label>
-                                <input class="form-control" name="image" value="{{$event->image}}" />
+                                <input type="file" class="form-control" name="image"  />
                             </div>
                             
                             <button type="submit" class="btn btn-default">Edit </button>

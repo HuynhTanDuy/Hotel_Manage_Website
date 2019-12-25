@@ -31,7 +31,7 @@ class SlideController extends Controller
         $slide=Slide::find($id);
        // $slide->link=$request->link;
         $slide->caption=$request->caption;
-      
+        $slide->link="images/" . $request->image->getClientOriginalName();
        
     
         $slide->save(); 

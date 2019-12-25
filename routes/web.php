@@ -14,7 +14,7 @@ Route::get('/','PageController@Home');
 Route::get('home','PageController@Home' );
 Route::get('about','PageController@About');
 Route::get('event','PageController@Event');
-Route::get('rooms','PageController@Rooms');
+Route::get('rooms','PageController@Rooms');	
 Route::get('reservation/{idCate}','PageController@Reservation');
 Route::post('postReservation','PageController@postReservation');
 Route::get('exportBill','UserController@ExportBill');
@@ -147,6 +147,7 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 Route::group(['prefix'=>'api'],function(){
 	Route::get('room-type','ApiController@getRoomType');
 	Route::post('hipost','ApiController@testPost');
+	Route::get('getRoomAvailable/{idRoom}','ApiController@getRoomAvailable');
 });	
 
 

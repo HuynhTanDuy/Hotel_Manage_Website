@@ -38,7 +38,7 @@ class EventController extends Controller
         
        $event->name=$request->name;
         $event->body=$request->body;
-        $event->image=$request->image;
+        $event->image="images/" . $request->image->getClientOriginalName();
        
     
         $event->save(); 

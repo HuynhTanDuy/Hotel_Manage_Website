@@ -27,16 +27,13 @@
                         </div>
                         @endif
 
-                        <form action="admin/slide/editPost/{{$slide->id}}" method="POST">
+                        <form action="admin/slide/editPost/{{$slide->id}}" method="POST" enctype="multipart/form-data">
                              @csrf
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                            
                             <div class="form-group">
-                               <div>
-                                <label>Hình Ảnh</label>
-                                <img width="300px" src="{{$slide->link}}">
-                               
-                               </div>
+                                <label>Image</label>
+                                <input type="file" class="form-control" name="image"/>
                             </div>
                             <div class="form-group">
                                 <label>Caption</label>

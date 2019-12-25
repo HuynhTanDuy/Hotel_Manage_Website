@@ -50,7 +50,7 @@
                                     <td>{{$r->Notes}}</td>
                                    
                                     <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/reservation/edit/{{$r->id}}">Edit</a></td>
-                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/reservation/delete/{{$r->id}}"> Delete</a></td>
+                                    <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/reservation/delete/{{$r->id}}" onclick="return confirm('Bạn có chắc muốn xóa ?');"> Delete</a></td>
                                     <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/bill/list/{{$r->id}}"> Check</a></td>
                                     
                                 </tr>

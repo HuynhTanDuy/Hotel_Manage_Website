@@ -32,7 +32,7 @@
                             @foreach ($about as $inf)
                                 <tr class="odd gradeX" align="center">
                                     <td>{{$inf->body}}</td>
-                                    <td>{{$inf->image}}</td>
+                                    <td> <img style="max-width: 200px;max-height: 200px;" src="{{$inf->image}}">  </td>
                                     <td>{{$inf->video}}</td>
                                    
 
