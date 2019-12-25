@@ -130,16 +130,50 @@
           <div class="col-md-5" data-aos="fade-up" data-aos-delay="200">
             <div class="row">
               <div class="col-md-10 ml-auto contact-info">
-                <p><span class="d-block">Address:</span> <span class="text-black"> {{$infor->address}}</span></p>
-                <p><span class="d-block">Phone:</span> <span class="text-black"> {{$infor->phone_number}}</span></p>
-                <p><span class="d-block">Email:</span> <span class="text-black"> {{$infor->email}}</span></p>
+                <p><span class="d-block">Room Available:</span> <span class="text-black" id="room-available"> A100 </span></p>
+                <p><span class="d-block">Price:</span> <span class="text-black" id="price"> 90$ </span></p>
+                <p><span class="d-block">Size:</span> <span class="text-black" id="size"> 1 people </span></p>
               </div>
             </div>
           </div>
         </div>
       </div>
     </section>
+    
 @endsection
+
+@section('scripts')
+<script type="text/javascript">
+  $(document).ready(function(){
+    // var element = document.getElementById("next");console.log(element); 
+    // element.scrollIntoView();
+    $('.smoothscroll').click(); 
+    var room = $('#room');
+    room.change(function(){
+      var request = $.ajax({
+                      url: "http://localhost/Hotel_Manage_Website/public/api/getRoomAvailable/"+room.val() ,
+                      method: "GET",
+                      //data: room.val()
+                    });
+      request
+        .done(function(response){
+          if (response.code=='200') {
+            $('#room-available').text(response.room_taken.name);
+            $('#price').text(response.category.price + "$");
+            $('#size').text(response.category.size + " people");
+          }
+          else {
+            $('#room-available').text("HẾT PHÒNG");
+            $('#price').text("");
+            $('#size').text("");
+          }
+        });
+    })
+  });
+  
+</script>
+@endsection
+
    
 
     

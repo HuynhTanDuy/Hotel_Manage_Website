@@ -34,7 +34,7 @@ class AboutController extends Controller
         
         $about=About::find(1);
         $about->body=$request->body;
-        $about->image=$request->image;
+        $about->image="images/" . $request->image->getClientOriginalName();
         $about->video=$request->video;
     
         $about->save(); 

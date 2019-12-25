@@ -25,7 +25,7 @@
                             {{session('thongbao')}}
                         </div>
                         @endif
-                        <form action="admin/about/editPost"  method="POST">
+                        <form action="admin/about/editPost"  method="POST" enctype="multipart/form-data">
                             @csrf
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
@@ -34,7 +34,7 @@
                             </div>
                              <div class="form-group">
                                 <label>Image</label>
-                                <input class="form-control" name="image"  value="{{$about->image }}" />
+                                <input type="file" class="form-control" name="image"/>
                             </div>
                              <div class="form-group">
                                 <label>Video</label>

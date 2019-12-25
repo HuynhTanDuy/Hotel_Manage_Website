@@ -14,12 +14,13 @@ Route::get('/','PageController@Home');
 Route::get('home','PageController@Home' );
 Route::get('about','PageController@About');
 Route::get('event','PageController@Event');
-Route::get('rooms','PageController@Rooms');
+Route::get('rooms','PageController@Rooms');	
 Route::get('reservation/{idCate}','PageController@Reservation');
 Route::post('postReservation','PageController@postReservation');
 Route::get('exportBill','UserController@ExportBill');
 Route::get('/admin/report','UserController@Report');
 Route::get('/admin/monthReport','UserController@monthReport');
+
 
 //route cho login
 Route::get('admin/login','UserController@getDangNhapAdmin');
@@ -149,6 +150,9 @@ Route::group(['prefix'=>'api'],function(){
 	Route::get('news','ApiController@getNews');
 	Route::post('hipost','ApiController@testPost');
 	Route::get('history','ApiController@getHistory'); //history?email=
+	Route::get('getRoomAvailable/{idRoom}','ApiController@getRoomAvailable');
+	Route::get('getMonthReportData/{idMonth}','ApiController@getMonthReportData');
+	Route::post('reservation','ApiController@postReservation');
 });	
 
 
