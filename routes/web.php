@@ -21,6 +21,7 @@ Route::get('exportBill','UserController@ExportBill');
 Route::get('/admin/report','UserController@Report');
 Route::get('/admin/monthReport','UserController@monthReport');
 
+
 //route cho login
 Route::get('admin/login','UserController@getDangNhapAdmin');
 Route::post('admin/dangnhappost','UserController@postDangNhapAdmin');
@@ -148,6 +149,8 @@ Route::group(['prefix'=>'api'],function(){
 	Route::get('room-type','ApiController@getRoomType');
 	Route::post('hipost','ApiController@testPost');
 	Route::get('getRoomAvailable/{idRoom}','ApiController@getRoomAvailable');
+	Route::get('getMonthReportData/{idMonth}','ApiController@getMonthReportData');
+	Route::post('reservation','ApiController@postReservation');
 });	
 
 
