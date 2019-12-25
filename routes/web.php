@@ -146,7 +146,9 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 
 Route::group(['prefix'=>'api'],function(){
 	Route::get('room-type','ApiController@getRoomType');
+	Route::get('news','ApiController@getNews');
 	Route::post('hipost','ApiController@testPost');
+	Route::get('history','ApiController@getHistory'); //history?email=
 });	
 
 
