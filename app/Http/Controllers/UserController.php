@@ -10,6 +10,10 @@ use App\TinTuc;
 use App\Comment;
 use App\User;
 use App\Charts\yearlyReport;
+use Excel;
+use App\Exports\InvoicesExport;
+use App\DetailBill;
+use App\Reservation;
 class UserController extends Controller
 {
     
@@ -73,6 +77,22 @@ class UserController extends Controller
         //$chart->dataset('My dataset 2', 'line', [4, 3, 2, 1]);
 
         return view('pages.monthReport', ['chart' => $chart]);
+    }
+
+    public function exportInvoice($idReservation)
+    {
+        $detail_bill= DetailBill::where('idReservation', $idReservation)->get();
+        $sum=0;
+        foreach ($detail_bill as $item) {
+            $sum += $item->price;
+        }
+        $reservation = Reservation::find($idReservation);
+        $reservation->total_bill=$sum;
+        $reservation->status=1;
+        $reservation->save();
+
+
+        return Excel::download(new InvoicesExport($idReservation), 'invoices.xlsx');
     }
 
 }

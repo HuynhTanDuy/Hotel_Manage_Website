@@ -89,7 +89,9 @@ class ApiController extends Controller
     {
         $reservation=Reservation::where('status',1)
                      ->whereMonth('DateOut',$idMonth)
+                     ->orderBy('DateOut','ASC')
                      ->get();
+                   
         return response()->json([
             'code' => '200',
             'data' => $reservation

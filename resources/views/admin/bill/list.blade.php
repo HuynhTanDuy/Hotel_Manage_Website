@@ -45,7 +45,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                        <button type="button" class="btn btn-warning"> <a href="admin/bill/add/{{$reservation->id}}"> Thêm </a> </button>
-                       <button class="btn btn-warning">  Xuất hóa đơn </button>
+                       <button class="btn btn-warning"> <a href="exportInvoice/{{$reservation->id}}">Thanh toán</a>   </button>
                     </div>
                 </div>
                  <div class="row">

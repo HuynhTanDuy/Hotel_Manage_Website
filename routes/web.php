@@ -27,6 +27,7 @@ Route::get('admin/login','UserController@getDangNhapAdmin');
 Route::post('admin/dangnhappost','UserController@postDangNhapAdmin');
 Route::get('admin/logout','UserController@getDangXuatAdmin');
 Route::get('admin','UserController@getDangNhapAdmin');
+Route::get('exportInvoice/{idReservation}','UserController@exportInvoice');
 //tạo route cho trang admin
 Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 
@@ -154,5 +155,7 @@ Route::group(['prefix'=>'api'],function(){
 	Route::get('getMonthReportData/{idMonth}','ApiController@getMonthReportData');
 	Route::post('reservation','ApiController@postReservation');
 });	
+
+Route::view('invoice','admin.bill.invoice');
 
 
