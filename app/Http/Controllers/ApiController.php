@@ -32,27 +32,28 @@ class ApiController extends Controller
     }
     public function getHistory(Request $request)
     {
-      
-        if ($request->has('email')){
-            $reservation = Reservation::where('email', $request->input('email'))->get();
-            $properties = [];
-            foreach ($reservation as $array_item) {
-                if (!is_null($array_item['id'])) {
-                    $properties['id'] = $array_item['id'];
-                    $properties['idRoom'] = $array_item['idRoom'];
-                    $properties['DateIn'] = $array_item['DateIn'];
-                    $properties['DateOut'] = $array_item['DateOut'];
-                    $room = Room::where('id', $properties['idRoom'])->first();
-                    $properties['roomName'] = $room['name'];
-                    $idCategory = $room['idCategory'];
-                    $properties['categoryRoomName'] = CategoryRoom::where('id', $idCategory)->first()['name'];
-                    $properties['image'] = CategoryRoom::where('id', $idCategory)->first()['image'];
-                    $properties['price'] = DetailBill::where('idReservation', $properties['id'])->first()['price'];
-                }
+        $historyList = [];
+            if ($request->has('email')){
+                $reservation = Reservation::where('email', $request->input('email'))->get();
+                $properties = [];
+                foreach ($reservation as $array_item) {
+                    if (!is_null($array_item['id'])) {
+                        $properties['id'] = $array_item['id'];
+                        $properties['idRoom'] = $array_item['idRoom'];
+                        $properties['DateIn'] = $array_item['DateIn'];
+                        $properties['DateOut'] = $array_item['DateOut'];
+                        $room = Room::where('id', $properties['idRoom'])->first();
+                        $properties['roomName'] = $room['name'];
+                        $idCategory = $room['idCategory'];
+                        $properties['categoryRoomName'] = CategoryRoom::where('id', $idCategory)->first()['name'];
+                        $properties['image'] = CategoryRoom::where('id', $idCategory)->first()['image'];
+                        $properties['price'] = DetailBill::where('idReservation', $properties['id'])->first()['price'];
+                    }
+                array_push($historyList, $properties);
             }
             return response()->json([
                 'code' => '200',
-                'data' => $properties
+                'data' => $historyList
             ]);
         }
         else {
@@ -101,7 +102,6 @@ class ApiController extends Controller
     public function postReservation()
     {   
         $room_category = Input::get('room_category');
-
 
         $room=Room::where('Status',1)->where('idCategory',$room_category)->get();
         if (count($room)>0) 
