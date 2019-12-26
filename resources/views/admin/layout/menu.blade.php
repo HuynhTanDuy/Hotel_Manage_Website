@@ -94,11 +94,12 @@
                             <a href="admin/report"><i class="fa fa-bar-chart-o fa-fw"></i> Report<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="admin/report">Yearly Report</a>
+                                    <a href="admin/monthReport/12">Monthly Report</a>
                                 </li>
                                 <li>
-                                    <a href="admin/monthReport">Monthly Report</a>
+                                    <a href="admin/report">Yearly Report</a>
                                 </li>
+                                
                             </ul>
                         </li>
                             

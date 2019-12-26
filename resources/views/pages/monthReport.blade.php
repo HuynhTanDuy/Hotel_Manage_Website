@@ -4,34 +4,35 @@
     <div id="page-wrapper">
         <div class="container-fluid">
             <div class="row">
-                <h2 style="text-align: center;"> Danh sách hóa đơn</h2>
+                <h2 style="text-align: center;"> Danh sách hóa đơn tháng 
+                    <select id="month">
+                        @for ($i=1;$i<=12;$i++)
+                        <option @if ($i==$idMonth) selected @endif >{{$i}}</option>
+                        @endfor
+                        
+                    </select>
+                </h2> 
                 <table class="table table-striped table-bordered table-hover" id="dataTables-example">
                 <thead>
                             <tr align="center">
                                 
                                 <th>Họ tên khách hàng</th>
-                                <th>Tên phòng</th>
+                                {{-- <th>Tên phòng</th> --}}
                                 <th>Tổng hóa đơn</th>
                                 <th>Ngày thanh toán</th>
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- @foreach ($reservation as $r) --}}
+                            @foreach ($reservation as $r)
                                 <tr class="odd gradeX" align="center">
-                                    <td> Huỳnh Tấn Duy</td>
-                                    <td> A100</td>
-                                    <td> 200$</td>
-                                    <td>9-10-2019</td>
+                                    <td> {{$r->name}}</td>
+                                    {{-- <td> $r->room</td> --}}
+                                    <td> {{$r->total_bill}}</td>
+                                    <td> {{$r->DateOut}}</td>
 
                                 </tr>
-                                <tr class="odd gradeX" align="center">
-                                    <td> Huỳnh Phương Duy</td>
-                                    <td> B105</td>
-                                    <td> 100$</td>
-                                    <td>20-10-2019</td>
-                                    
-                                </tr>
-                            {{-- @endforeach --}}
+                                
+                            @endforeach
                         </tbody>
                     </table>       
             </div>
@@ -41,7 +42,7 @@
             </canvas>
             <!-- End Of Main Application -->
                 </div>
-                <h2 style="text-align: center;"> Biểu đồ Doanh thu tháng 11</h2>
+                <h2 style="text-align: center;"> Biểu đồ Doanh thu tháng {{$idMonth}}</h2>
             </div>
 
         </div>
@@ -54,12 +55,18 @@
 @section('script')
 <script type="text/javascript">
     $(document).ready(function(){
-        renderChart(12);
+        month=$('#month');
+        renderChart(month.val());
+        month.change(function(){
+            // renderChart(month.val());
+            window.location.href = "http://localhost/Hotel_Manage_Website/public/admin/monthReport/" + month.val();
+        })
+        
     });
     function renderChart(month) {
         var request = $.ajax({
-                          url: "http://localhost/Hotel_Manage_Website/public/api/getMonthReportData/"+11 ,
-                          method: "GET",
+                          url: "http://localhost/Hotel_Manage_Website/public/api/getMonthReportData/"+month ,
+                          method: "GET",    
                           //data: room.val()
                       });
         request

@@ -69,14 +69,18 @@ class UserController extends Controller
         return view('pages.report', ['chart' => $chart]);
     }
 
-    public function monthReport()
+    public function monthReport($idMonth)
     {
         $chart=new yearlyReport;
         $chart->labels(['One', 'Two', 'Three', 'Four']);
         $chart->dataset('My dataset', 'bar', [1, 2, 3, 4]);
-        //$chart->dataset('My dataset 2', 'line', [4, 3, 2, 1]);
 
-        return view('pages.monthReport', ['chart' => $chart]);
+        $reservation=Reservation::where('status',1)
+                     ->whereMonth('DateOut',$idMonth)
+                     ->orderBy('DateOut','ASC')
+                     ->get();
+
+        return view('pages.monthReport', ['chart' => $chart,'reservation' =>$reservation,'idMonth' => $idMonth]);
     }
 
     public function exportInvoice($idReservation)

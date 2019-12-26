@@ -19,7 +19,7 @@ Route::get('reservation/{idCate}','PageController@Reservation');
 Route::post('postReservation','PageController@postReservation');
 Route::get('exportBill','UserController@ExportBill');
 Route::get('/admin/report','UserController@Report');
-Route::get('/admin/monthReport','UserController@monthReport');
+Route::get('/admin/monthReport/{idMonth}','UserController@monthReport');
 
 
 //route cho login
