@@ -145,13 +145,13 @@
 @section('scripts')
 <script type="text/javascript">
   $(document).ready(function(){
-    // var element = document.getElementById("next");console.log(element); 
-    // element.scrollIntoView();
-    $('.smoothscroll').click(); 
+    $('.smoothscroll').click();
+
     var room = $('#room');
     room.change(function(){
+      
       var request = $.ajax({
-                      url: "http://localhost/Hotel_Manage_Website/public/api/getRoomAvailable/"+room.val() ,
+                      url: "/api/getRoomAvailable/"+room.val() ,
                       method: "GET",
                       //data: room.val()
                     });
@@ -169,6 +169,8 @@
           }
         });
     })
+
+    room.trigger("change");
   });
   
 </script>

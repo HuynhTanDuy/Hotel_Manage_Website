@@ -59,13 +59,13 @@
         renderChart(month.val());
         month.change(function(){
             // renderChart(month.val());
-            window.location.href = "http://localhost/Hotel_Manage_Website/public/admin/monthReport/" + month.val();
+            window.location.href = "/admin/monthReport/" + month.val();
         })
         
     });
     function renderChart(month) {
         var request = $.ajax({
-                          url: "http://localhost/Hotel_Manage_Website/public/api/getMonthReportData/"+month ,
+                          url: "/api/getMonthReportData/"+month ,
                           method: "GET",    
                           //data: room.val()
                       });
