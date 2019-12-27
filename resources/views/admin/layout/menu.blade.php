@@ -68,6 +68,18 @@
                             <!-- /.nav-second-level -->
                         </li>
                         <li>
+                            <a href="admin/category_room/list"><i class="fa fa-bar-chart-o fa-fw"></i>Category Room<span class="fa arrow"></span></a>
+                            <ul class="nav nav-second-level">
+                                <li>
+                                    <a href="admin/category_room/list">List</a>
+                                </li>
+                                <li>
+                                    <a href="admin/category_room/add">Add</a>
+                                </li>
+                            </ul>
+                            <!-- /.nav-second-level -->
+                        </li>
+                        <li>
                             <a href="admin/room/list"><i class="fa fa-bar-chart-o fa-fw"></i> Room<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>

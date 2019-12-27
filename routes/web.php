@@ -101,6 +101,21 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 		Route::get('delete/{id}','FoodController@Delete');
 	});	//Route for delete
 
+	Route::group(['prefix'=>'category_room'],function(){
+
+		Route::get('list','CategoryRoomController@getRoom');
+
+		Route::get('edit/{id}','CategoryRoomController@Edit');
+		Route::post('editPost/{id}','CategoryRoomController@EditPost');
+
+		Route::get('add','CategoryRoomController@Add');
+		Route::post('addpost','CategoryRoomController@AddPost');
+
+		
+
+		Route::get('delete/{id}','CategoryRoomController@Delete');
+	});
+
 	Route::group(['prefix'=>'room'],function(){
 
 		Route::get('list','RoomController@getRoom');
