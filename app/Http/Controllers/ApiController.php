@@ -42,6 +42,7 @@ class ApiController extends Controller
                         $properties['idRoom'] = $array_item['idRoom'];
                         $properties['DateIn'] = $array_item['DateIn'];
                         $properties['DateOut'] = $array_item['DateOut'];
+                        $properties['status'] = $array_item['status'];
                         $room = Room::where('id', $properties['idRoom'])->first();
                         $properties['roomName'] = $room['name'];
                         $idCategory = $room['idCategory'];

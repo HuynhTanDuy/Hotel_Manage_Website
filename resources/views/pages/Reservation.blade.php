@@ -81,11 +81,11 @@
               <div class="row">
                 <div class="col-md-6 form-group">
                   <label class="text-black font-weight-bold" for="checkin_date">Date Check In</label>
-                  <input type="date"  class="form-control" name="datein">
+                  <input type="date"  class="form-control" id="dateIn" name="datein">
                 </div>
                 <div class="col-md-6 form-group">
                   <label class="text-black font-weight-bold" for="checkout_date">Date Check Out</label>
-                  <input type="date"  class="form-control" name="dateout">
+                  <input type="date"  class="form-control" id="dateOut" name="dateout">
                 </div>
               </div>
 
@@ -171,6 +171,9 @@
     })
 
     room.trigger("change");
+    // document.getElementsByName("datein").valueAsDate = new Date();
+    document.getElementById("dateIn").valueAsDate = new Date();
+    document.getElementById("dateOut").valueAsDate = new Date();
   });
   
 </script>

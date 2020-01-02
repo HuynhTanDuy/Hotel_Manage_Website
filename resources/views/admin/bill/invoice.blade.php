@@ -5,14 +5,14 @@
 </head>
 <body>
 
-	Họ và tên: {{$reservation[0]->name}}  <br>
-	Ngày nhận phòng: {{$reservation[0]->DateIn}}  <br>
-	Ngày thanh toán: {{$reservation[0]->DateOut}}  <br>
+	<h5> Họ và tên: {{$reservation[0]->name}}   </h5>
+	<h5> Ngày nhận phòng: {{$reservation[0]->DateIn}}  </h5> 
+	<h5> Ngày thanh toán: {{$reservation[0]->DateOut}}  </h5>  
 	<table>
 		<thead>
 		    <tr>
-		    	<th>Nội dung</th>
-		        <th>Giá</th>
+		    	<th><h2>Nội dung</h2></th>
+		        <th><h2>Giá</h2></th>
 		    </tr>
 	    </thead>
     <tbody>

@@ -10,7 +10,7 @@ class ReservationController extends Controller
 {
 	public function getReservation()
 	{
-		$reservation=Reservation::all();
+		$reservation=Reservation::where('status',null)->get();
         $room=Room::all();
 		return view('admin.reservation.list',['reservation'=>$reservation,'room'=>$room]);
 	}
@@ -144,11 +144,12 @@ class ReservationController extends Controller
         }
 
         $reservation=Reservation::find($id);
+        $reservation->status=1;
         $room=Room::find($reservation->idRoom);
         $room->Status=1;
         $room->save();
-        $reservation->delete();
-        return redirect('admin/reservation/list')->with('annoucement','Xóa reservation thành công');
+        $reservation->save();
+        return redirect('admin/reservation/list')->with('annoucement','Trả phòng thành công');
      }
 
 }	

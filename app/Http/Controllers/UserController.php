@@ -14,6 +14,7 @@ use Excel;
 use App\Exports\InvoicesExport;
 use App\DetailBill;
 use App\Reservation;
+use App\Room;
 class UserController extends Controller
 {
     
@@ -65,8 +66,15 @@ class UserController extends Controller
         $chart->labels(['One', 'Two', 'Three', 'Four']);
         $chart->dataset('My dataset', 'bar', [1, 2, 3, 4]);
         //$chart->dataset('My dataset 2', 'line', [4, 3, 2, 1]);
-
-        return view('pages.report', ['chart' => $chart]);
+        $data_month=Reservation::where('status',1)
+                     ->whereMonth('DateOut',1)
+                     ->get();
+        $sum=0;
+        foreach ($data_month as $item) {
+            $sum += $item->total_bill;
+        };
+        
+        return view('pages.report', ['chart' => $chart,'month1'=> $sum]);
     }
 
     public function monthReport($idMonth)
@@ -92,11 +100,19 @@ class UserController extends Controller
         }
         $reservation = Reservation::find($idReservation);
         $reservation->total_bill=$sum;
-        $reservation->status=1;
+        // $reservation->status=1;
         $reservation->save();
 
+        // $room=Room::find($reservation->idRoom);
+        // $room->Status=1;
+        // $room->save();
 
+        //return Reservation::where('id',$idReservation)->get();
         return Excel::download(new InvoicesExport($idReservation), 'invoices.xlsx');
+        
+        // return redirect('admin/reservation/list')
+        //         ->with('annoucement','Thanh toán thành công. Đã xuất hóa đơn.')
+        //         ;
     }
 
 }
