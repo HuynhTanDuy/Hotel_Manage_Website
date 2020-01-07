@@ -158,6 +158,20 @@ Route::group(['prefix'=>'admin','middleware'=>'adminLogin'],function(){
 		Route::get('delete/{id}/{idReser}','BillController@Delete');
 	});	//Route for delete
 
+	Route::group(['prefix'=>'user'],function(){
+
+		Route::get('list','UserController@getUser');
+
+		Route::get('edit/{id}','UserController@Edit');
+		Route::post('editPost/{id}','UserController@EditPost');
+
+		Route::get('add','UserController@Add');
+		Route::post('addpost','UserController@AddPost');
+
+		
+
+		Route::get('delete/{id}','UserController@Delete');
+	});	//Route for delete
 
 });
 

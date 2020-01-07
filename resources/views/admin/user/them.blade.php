@@ -32,37 +32,26 @@
                         </div>
                         @endif
 
-                        <form action="admin/user/thempost" method="POST" enctype="multipart/form-data">
+                        <form action="admin/user/addpost" method="POST" enctype="multipart/form-data">
                              @csrf
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             
                             <div class="form-group">
                                 <label>Name</label>
-                                <input class="form-control" name="name" placeholder="Please Enter Name" />
+                                <input class="form-control" name="name" placeholder="Please Enter Name" value="" />
                             </div>
                             <div class="form-group">
-                                <label>Email</label>
-                                <input type="email" class="form-control" name="email" placeholder="Please Enter Email" />
+                                <label>Password</label>
+                                <input type="Password" class="form-control" name="password" placeholder="Please Enter Password" value="" />
                             </div>
                             <div class="form-group">
                                 <label>Quyền</label>
-                                <label class="radio-inline">
-                                    <input name="quyen" value="0" type="radio">Người Dùng
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="quyen" value="1" checked="" type="radio">Admin
-                                </label>
+                                <input disabled class="form-control" name="type" value="Nhân viên" />
                                 
                             </div>
 
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="Password" class="form-control" name="password" placeholder="Please Enter Password" />
-                            </div>
-                             <div class="form-group">
-                                <label>Nhập lại Password</label>
-                                <input type="Password" class="form-control" name="passwordagain" placeholder="Please Enter Password Again" />
-                            </div>
+                            
+                             
 
                             <button type="submit" class="btn btn-default">Thêm </button>
                             <button type="reset" class="btn btn-default">Reset</button>

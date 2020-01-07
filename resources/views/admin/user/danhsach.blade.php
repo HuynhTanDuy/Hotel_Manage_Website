@@ -22,11 +22,10 @@
                             <tr align="center">
                                 <th>ID</th>
                                 <th>Name</th>
-                                <th>Email</th>
-                                <th>Quyen</th>
-                                <th>Password</th>
-                                <th>Delete</th>
+                                <th>Type</th>
                                 <th>Edit</th>
+                                <th>Delete</th>
+                                
                             </tr>
                         </thead>
                         <tbody>
@@ -34,15 +33,16 @@
                             <tr class="odd gradeX" align="center">
                                 <td>{{$us->id}}</td>
                                 <td>{{$us->name}}</td>
-                                <td>{{$us->email}}</td>
+                                
                                 <td>
-                                    @if ($us->quyen==0) {{'Người Dùng'}}
-                                    @else {{'Admin'}}
+                                    @if ($us->type==0) {{'Admin'}}
+                                    @else {{'Nhân viên'}}
                                     @endif
                                 </td>
-                                <td>{{$us->password}}</td>
-                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a href="admin/user/xoa/{{$us->id}}"> Delete</a></td>
-                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/user/sua/{{$us->id}}">Edit</a></td>
+                                
+                                <td class="center"><i class="fa fa-pencil fa-fw"></i> <a href="admin/user/edit/{{$us->id}}">Edit</a></td>
+                                <td class="center"><i class="fa fa-trash-o  fa-fw"></i><a onclick="return confirm('Bạn có chắc muốn xóa ?');" href="admin/user/delete/{{$us->id}}"> Delete</a></td> 
+                                
                             </tr>
                             @endforeach
                         </tbody>

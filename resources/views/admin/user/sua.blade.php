@@ -25,39 +25,25 @@
                             {{session('thongbao')}}
                         </div>
                         @endif
-                        <form action="admin/user/suapost/{{$user->id}}" method="POST" enctype="multipart/form-data">
+                        <form action="admin/user/editPost/{{$user->id}}" method="POST" enctype="multipart/form-data">
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
                             <div class="form-group">
                                 <label>Name</label>
                                 <input class="form-control" name="name" value="{{$user->name}}" />
                             </div>
+                            
+                            
                             <div class="form-group">
-                                <label>Email</label>
-                                <input class="form-control" name="email" value="{{$user->email}}" />
+                                <label>Password</label>
+                                <input type="Password" class="form-control" name="password"  />
                             </div>
                             <div class="form-group">
                                 <label>Quyền</label>
-                                <label class="radio-inline">
-                                    <input name="quyen" value="0" 
-                                    @if ($user->quyen==0) {{"checked"}}
-                                    @endif
-                                    type="radio">Người Dùng
-                                </label>
-                                <label class="radio-inline">
-                                    <input name="quyen" value="0" 
-                                    @if ($user->quyen==1) {{"checked"}}
-                                    @endif
-                                    type="radio">Amin
-                                </label>
-                                
-                            </div>
-                            <div class="form-group">
-                                <label>Password</label>
-                                <input type="Password" class="form-control" name="password" value="{{$user->password}}" />
-                            </div>
-                             <div class="form-group">
-                                <label>Nhập lại Password</label>
-                                <input type="Password" class="form-control" name="passwordagain" placeholder="Please Enter Password Again" />
+                                @if ($user->type==0)
+                                <input disabled class="form-control" name="type" value="Admin" />
+                                @else
+                                <input disabled class="form-control" name="type" value="Nhân viên" />
+                                @endif
                             </div>
                            
                            

@@ -15,6 +15,7 @@ use App\Exports\InvoicesExport;
 use App\DetailBill;
 use App\Reservation;
 use App\Room;
+use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     
@@ -114,6 +115,97 @@ class UserController extends Controller
         //         ->with('annoucement','Thanh toán thành công. Đã xuất hóa đơn.')
         //         ;
     }
+
+    public function getUser()
+    {   
+        $user=User::all();
+        return view('admin.user.danhsach')
+            ->with('user', $user);
+    }
+
+    public function Edit($id)
+    {
+        
+        $user=User::find($id);
+        return view('admin.user.sua',['user'=>$user]);
+    }
+    public function EditPost(Request $request,$id)
+    {
+        $this->validate($request,
+        [
+            
+            'name'=>'required',
+            'password'=>'required',
+            
+            
+        ],
+        [   
+            
+            'name.required'=>"Bạn chưa nhập tên user",
+            'password'=>"Bạn chưa nhập mật khẩu",
+            
+           
+        ]);
+        
+        $user=User::find($id);
+       // $room->link=$request->link;
+        $user->name=$request->name;
+        $user->password=Hash::make($request->password);
+      
+       
+    
+        $user->save(); 
+
+
+        return redirect('admin/user/list')->with('thongbao','Sửa thông tin user thành công');
+      
+    }
+
+    public function Add()
+    {
+        
+        return view('admin.user.them');
+    }
+    public function AddPost(Request $request)
+    {
+      $this->validate($request,
+        [
+            
+            'name'=>'required',
+            'password'=>'required',
+            
+            
+        ],
+        [   
+            
+            'name.required'=>"Bạn chưa nhập tên user",
+            'password'=>"Bạn chưa nhập mật khẩu",
+            
+           
+        ]);
+        
+        $user=new User;
+       // $room->link=$request->link;
+        $user->name=$request->name;
+        $user->password=Hash::make($request->password) ;
+        $user->type=1;
+      
+       
+    
+        $user->save(); 
+
+
+        return redirect('admin/user/list')->with('thongbao','thêm user thành công');
+      
+      
+    }
+    public function Delete($id)
+    {
+        $user=User::find($id);
+        $user->delete();
+        return redirect('admin/user/list')->with('thongbao','Xóa user thành công');
+     }
+
 
 }
 
