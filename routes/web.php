@@ -182,7 +182,8 @@ Route::group(['prefix'=>'api'],function(){
 	Route::get('history','ApiController@getHistory'); //history?email=
 	Route::get('getRoomAvailable/{idRoom}','ApiController@getRoomAvailable');
 	Route::get('getMonthReportData/{idMonth}','ApiController@getMonthReportData');
-	Route::post('reservation','ApiController@postReservation');
+	Route::post('reservation','ApiController@postReservation'); 
+	Route::post('postReservation', 'ApiController@Reservation');//reservation?number=  
 });	
 
 Route::view('invoice','admin.bill.invoice');

@@ -139,9 +139,9 @@ class ReservationController extends Controller
     public function Delete($id)
     {   
         $bill=DetailBill::where('idReservation',$id)->get();
-        foreach ($bill as $b) {
-            $b->delete();
-        }
+        // foreach ($bill as $b) {
+        //     $b->delete();
+        // }
 
         $reservation=Reservation::find($id);
         $reservation->status=1;

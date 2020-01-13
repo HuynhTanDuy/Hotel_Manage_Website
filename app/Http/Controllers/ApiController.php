@@ -69,22 +69,21 @@ class ApiController extends Controller
 
 
 
-    public function getRoomAvailable($idroom)
+    public function getRoomAvailable(Request $request, $idroom)
     {   
-        $room_taken=Room::where('Status',1)
-                    ->where('idCategory',$idroom)
-                    ->take(1)
-                    ->first();
-        if ($room_taken) 
+        $numberRoom = $request->input('number');
+        $room=Room::where('Status',1)->where('idCategory',$idroom)->get();
+        if ($numberRoom && $numberRoom <= count($room)) {
             return response()->json([
                 'code' => '200',
-                'room_taken' => $room_taken,
-                'category' => $room_taken->categoryRoom
-            ]);  
-        else return response()->json([
+                'data' => $room
+            ]);
+        } else {
+            return response()->json([
                 'code' => '400',
-                'message' => 'Hết Phòng'
-        ]);
+                'message' => 'Không còn đủ phòng để đặt, vui lòng quay lại sau!'
+            ]);
+        }
     }
 
     public function getMonthReportData($idMonth)
@@ -150,6 +149,51 @@ class ApiController extends Controller
              ]);   
 
             
+    }
+    public function Reservation(Request $request) {
+        $numberRoom =$request->input('number');
+        $room_category = Input::get('room_category');
+        $room=Room::where('Status',1)->where('idCategory',$room_category)->get();
+        $roomList = [];
+        if ($numberRoom && $numberRoom <= count($room)) {
+            for ($i=0; $i<$numberRoom; $i++) {
+                $roomtaken=Room::where('Status',1)->where('idCategory',$room_category)->take(1)->get();
+                $reservation=new Reservation;
+                $reservation->name=Input::get('name');    
+                $reservation->email=Input::get('email'); 
+                $reservation->phone=Input::get('phone'); 
+                $reservation->DateIn=Input::get('dateIn'); 
+                $reservation->DateOut=Input::get('dateOut'); 
+                $reservation->Numbers=Input::get('numbers'); 
+                $reservation->Notes=Input::get('note');
+                $reservation->idRoom=$roomtaken[0]->id;
+                $roomtaken[0]->Status=0;
+                $reservation->save();
+                $r=Room::find($reservation->idRoom);
+                $cate=CategoryRoom::find($r->idCategory);
+                $day= (strtotime($reservation->DateOut) - strtotime($reservation->DateIn))/60/60/24;
+                $bill=new DetailBill;
+                $bill->content='Tiền phòng';
+                $bill->price= $cate->price*$day;
+                $bill->idReservation=$reservation->id;
+                $bill->created_at=Input::get('dateOut');
+                $roomtaken[0]->save();
+                $bill->save();
+                $roomList[$i] = $roomtaken[0]->name;
+            }
+            return response()->json([
+                'code' => '200',
+                'message' => 'Đặt chỗ thành công.See you soon !',
+                'data' => $reservation
+            ]); 
+
+        } else {
+            return response()->json([
+                'code' => '400',
+                'message' => 'Không còn đủ phòng để đặt. Vui lòng thử lại sau!',
+                'data' => $reservation
+            ]); 
+        }
     }
 }	
 ?> 
